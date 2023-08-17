@@ -9,8 +9,14 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-public class Topic_02_Selenium_Locator {
+//C: Class
+//m: Method
+//I: Interface
+//E: Enum
+//R: Record
+//A: Annotation
+//f: biến final
+public class Topic_00_Template {
     WebDriver driver;
     String projectPath = System.getProperty("user.dir");
     String osName = System.getProperty("os.name");
@@ -26,7 +32,7 @@ public class Topic_02_Selenium_Locator {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get("https://demo.nopcommerce.com/register");
+        driver.get("https://www.facebook.com/");
     }
 
     @Test
@@ -41,42 +47,6 @@ public class Topic_02_Selenium_Locator {
 
     @Test
     public void TC_03_Form() {
-
-    }
-    @Test
-    public void TC_04_Form() {
-
-    }
-    @Test
-    public void TC_05_Form() {
-
-    }
-    @Test
-    public void TC_06_Form() {
-
-    }
-    @Test
-    public void TC_07_Css() {
-    //Css vs ID
-        driver.findElement(By.cssSelector("input[id='FirstName']"));
-        driver.findElement(By.cssSelector("input#FirstName"));
-        driver.findElement(By.cssSelector("#FirstName"));
-
-    //Css vs Class
-        driver.findElement(By.cssSelector("div[class='page-title']"));
-        driver.findElement(By.cssSelector("div.page-title"));
-        driver.findElement(By.cssSelector(".page-title"));
-    //Css vs Name
-        driver.findElement(By.cssSelector("input[name='FirstName']"));
-    //Css vs tagname
-        driver.findElement(By.cssSelector("input"));
-    //Css vs link
-        driver.findElement(By.cssSelector("a[href='/search']"));
-    //Css vs partial link
-        driver.findElement(By.cssSelector("a[href*='search']"));
-    }
-    @Test
-    public void TC_08_Xpath() {
 
     }
 
