@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -17,13 +18,23 @@ public class Topic_02_Selenium_Locator {
 
     @BeforeClass
     public void beforeClass() {
-        if (osName.contains("Windows")) {
+        /*if (osName.contains("Windows")) {
             System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
         } else {
             System.setProperty("webdriver.gecko.driver", projectPath + "/browserDrivers/geckodriver");
         }
 
         driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get("https://demo.nopcommerce.com/register");*/
+        if (osName.contains("Windows")) {
+            System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+        } else {
+            System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver");
+        }
+
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://demo.nopcommerce.com/register");
@@ -77,7 +88,23 @@ public class Topic_02_Selenium_Locator {
     }
     @Test
     public void TC_08_Xpath() {
+        //Xpath vs ID
+        driver.findElement(By.ByXPath("input[id='FirstName']"));
+        driver.findElement(By.cssSelector("input#FirstName"));
+        driver.findElement(By.cssSelector("#FirstName"));
 
+        //Xpath vs Class
+        driver.findElement(By.cssSelector("div[class='page-title']"));
+        driver.findElement(By.cssSelector("div.page-title"));
+        driver.findElement(By.cssSelector(".page-title"));
+        //Xpath vs Name
+        driver.findElement(By.cssSelector("input[name='FirstName']"));
+        //Xpath vs tagname
+        driver.findElement(By.cssSelector("input"));
+        //Xpath vs link
+        driver.findElement(By.cssSelector("a[href='/search']"));
+        //Xpath vs partial link
+        driver.findElement(By.cssSelector("a[href*='search']"));
     }
 
     @AfterClass
