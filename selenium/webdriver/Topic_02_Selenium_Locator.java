@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -88,28 +90,46 @@ public class Topic_02_Selenium_Locator {
     }
     @Test
     public void TC_08_Xpath() {
-        //Xpath vs ID
-        driver.findElement(By.ByXPath("input[id='FirstName']"));
-        driver.findElement(By.cssSelector("input#FirstName"));
-        driver.findElement(By.cssSelector("#FirstName"));
+       //Xpath vs ID
+        driver.findElement(By.xpath("//input[@id='gender-male']")).click();
+        driver.findElement(By.xpath("//input[@id='FirstName']")).sendKeys("test_FirstName");
+        driver.findElement(By.xpath("//input[@id='LastName']")).sendKeys("test_LastName");
+        driver.findElement(By.xpath("//input[@id='Email']")).sendKeys("test@gmail.com");
 
         //Xpath vs Class
-        driver.findElement(By.cssSelector("div[class='page-title']"));
-        driver.findElement(By.cssSelector("div.page-title"));
-        driver.findElement(By.cssSelector(".page-title"));
+        driver.findElement(By.xpath("//div[@class='page-title']"));
+        Select day = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthDay']")));
+        day.selectByIndex(24);
+        Select month = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthMonth']")));
+        month.selectByValue("9");
+        Select year = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthYear']")));
+        year.selectByVisibleText("1993");
+
         //Xpath vs Name
-        driver.findElement(By.cssSelector("input[name='FirstName']"));
+        driver.findElement(By.xpath("//input[@name='FirstName']"));
+        driver.findElement(By.xpath("//input[@name='Company']")).sendKeys("Test Company Name");
+        driver.findElement(By.xpath("//input[@name='Newsletter']")).click();
+        driver.findElement(By.xpath("//input[@name='Password']")).sendKeys("Password");
+        driver.findElement(By.xpath("//input[@name='ConfirmPassword']")).sendKeys("Password");
+        driver.findElement(By.xpath("//button[@name='register-button']")).click();
         //Xpath vs tagname
-        driver.findElement(By.cssSelector("input"));
+        driver.findElement(By.xpath("//input"));
         //Xpath vs link
-        driver.findElement(By.cssSelector("a[href='/search']"));
+        driver.findElement(By.xpath("//a[@href='/search']"));
+        driver.findElement(By.xpath("//a[text()='Search']"));
         //Xpath vs partial link
-        driver.findElement(By.cssSelector("a[href*='search']"));
+        driver.findElement(By.xpath("//a[contains(@href,'search')]"));
+        driver.findElement(By.xpath("//a[contains(text(),'Search')]"));
+        //Compare message
+        // WebDriverWait w = new WebDriverWait()
+       // String error_message = driver.findElement(By.xpath("//div[@class='message-error']")).getText();
+       //  System.out.print(error_message);
+        // Assert.assertEquals("The specified email already exists", error_message);
     }
 
     @AfterClass
     public void afterClass() {
 
-        driver.quit();
+        // driver.quit();
     }
 }
