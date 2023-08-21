@@ -1,5 +1,11 @@
 package webdriver;
-
+//C: Class
+//m: Method
+//I: Interface
+//E: Enum
+//R: Record
+//A: Annotation
+//f: biến final
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -9,13 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-//C: Class
-//m: Method
-//I: Interface
-//E: Enum
-//R: Record
-//A: Annotation
-//f: biến final
+
 public class Topic_00_Template {
     WebDriver driver;
     String projectPath = System.getProperty("user.dir");
