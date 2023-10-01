@@ -20,7 +20,7 @@ public class Topic_02_Selenium_Locator {
 
     @BeforeClass
     public void beforeClass() {
-        /*if (osName.contains("Windows")) {
+        if (osName.contains("Windows")) {
             System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
         } else {
             System.setProperty("webdriver.gecko.driver", projectPath + "/browserDrivers/geckodriver");
@@ -29,8 +29,8 @@ public class Topic_02_Selenium_Locator {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get("https://demo.nopcommerce.com/register");*/
-        if (osName.contains("Windows")) {
+        driver.get("https://demo.nopcommerce.com/register");
+        /*if (osName.contains("Windows")) {
             System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
         } else {
             System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver");
@@ -39,7 +39,7 @@ public class Topic_02_Selenium_Locator {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get("https://demo.nopcommerce.com/register");
+        driver.get("https://demo.nopcommerce.com/register");*/
     }
 
     @Test

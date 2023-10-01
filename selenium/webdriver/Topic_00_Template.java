@@ -6,6 +6,7 @@ package webdriver;
 //R: Record
 //A: Annotation
 //f: biến final
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -30,7 +31,7 @@ public class Topic_00_Template {
         }
 
         driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
         driver.get("https://www.facebook.com/");
     }
