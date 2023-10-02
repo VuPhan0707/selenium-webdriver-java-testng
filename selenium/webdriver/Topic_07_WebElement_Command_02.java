@@ -95,6 +95,68 @@ public class Topic_07_WebElement_Command_02 {
         else {
             System.out.println("Education is not disabled");
         }
+        if(driver.findElement(By.cssSelector("select[id='job1']")).isEnabled()){
+            System.out.println("Job1 is enabled");
+        }
+        else {
+            System.out.println("Job1 is not disabled");
+        }
+        if(driver.findElement(By.cssSelector("select[id='job2']")).isEnabled()){
+            System.out.println("Job2 is enabled");
+        }
+        else {
+            System.out.println("Job2 is not disabled");
+        }
+        if(driver.findElement(By.cssSelector("#development")).isEnabled()){
+            System.out.println("Development Checkbox is enabled");
+        }
+        else {
+            System.out.println("Development Checkbox is not disabled");
+        }
+        if(driver.findElement(By.cssSelector("#development")).isEnabled()){
+            System.out.println("Development Checkbox is enabled");
+        }
+        else {
+            System.out.println("Development Checkbox is not disabled");
+        }
+        if(driver.findElement(By.cssSelector("#development")).isEnabled()){
+            System.out.println("Development Checkbox is enabled");
+        }
+        else {
+            System.out.println("Development Checkbox is not disabled");
+        }
+        if(driver.findElement(By.cssSelector("#disable_password")).isEnabled()){
+            System.out.println("Password Checkbox is enabled");
+        }
+        else {
+            System.out.println("Password Checkbox is not disabled");
+        }
+        if(driver.findElement(By.cssSelector("#radio-disabled")).isEnabled()){
+            System.out.println("Radio is enabled");
+        }
+        else {
+            System.out.println("Radio is not disabled");
+        }
+        if(driver.findElement(By.cssSelector("#bio")).isEnabled()){
+            System.out.println("Biography is enabled");
+        }
+        else {
+            System.out.println("Biography is not disabled");
+        }
+        if(driver.findElement(By.cssSelector("select[id='job2']")).isEnabled()){
+            System.out.println("Job3 is enabled");
+        }
+        else {
+            System.out.println("Job3 is not disabled");
+        }
+        if(driver.findElement(By.cssSelector("#check-disbaled")).isEnabled()){
+            System.out.println("Checkbox is enabled");
+        }
+        else {
+            System.out.println("Checkbox is not disabled");
+        }
+
+
 
     }
     @Test
@@ -123,7 +185,7 @@ public class Topic_07_WebElement_Command_02 {
         Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
 
-        // Case 2: Nhập chữ
+        // Case 2: Nhập chữ thường
         sleepInSeconds(3);
         driver.findElement(By.cssSelector("input#new_password")).clear();
         driver.findElement(By.cssSelector("input#new_password")).sendKeys("abc");
@@ -132,15 +194,75 @@ public class Topic_07_WebElement_Command_02 {
         Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.not-completed")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+
+        // Case 3: Nhập chữ Hoa
+        sleepInSeconds(3);
+        driver.findElement(By.cssSelector("input#new_password")).clear();
+        driver.findElement(By.cssSelector("input#new_password")).sendKeys("ABC");
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+
+        // Case 4: Nhập kí tự đặc biệt
+        sleepInSeconds(3);
+        driver.findElement(By.cssSelector("input#new_password")).clear();
+        driver.findElement(By.cssSelector("input#new_password")).sendKeys("!@#");
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
+
+        // Case 5: Lớn hơn 8 kí tự
+        sleepInSeconds(3);
+        driver.findElement(By.cssSelector("input#new_password")).clear();
+        driver.findElement(By.cssSelector("input#new_password")).sendKeys("Abc123456");
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.uppercase-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.number-char.completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.special-char.not-completed")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char completed']")).isDisplayed());
     }
     @Test
-    public void TC_05_Register() {
-        driver.get("https://login.mailchimp.com/signup/");
-        driver.findElement(By.cssSelector("input#email")).sendKeys("test@gmail.com");
-        driver.findElement(By.id("new_password")).click();
-        // driver.findElement(By.id("create-account-enabled")).click();
-
-       //Assert.assertTrue(driver.findElement(By.cssSelector("li.lowercase-char.not-completed")).isDisplayed());
+    public void TC_05_Login_With_Empty() {
+        driver.get("http://live.techpanda.org/");
+        driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
+        sleepInSeconds(3);
+        driver.findElement(By.cssSelector("button[title='Login']")).click();
+        Assert.assertEquals(driver.findElement(By.cssSelector("#advice-required-entry-email")).getText(),"This is a required field.");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#advice-required-entry-pass")).getText(),"This is a required field.");
+    }
+    @Test
+    public void TC_06_Login_Invalid_Email() {
+        driver.get("http://live.techpanda.org/");
+        driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
+        sleepInSeconds(3);
+        driver.findElement(By.cssSelector("input[id='email']")).sendKeys("124124124124@124124124124");
+        driver.findElement(By.cssSelector("input[id='pass']")).sendKeys("123456");
+        driver.findElement(By.cssSelector("button[title='Login']")).click();
+        Assert.assertEquals(driver.findElement(By.cssSelector("#advice-validate-email-email")).getText(),"Please enter a valid email address. For example johndoe@domain.com.");
+    }
+    @Test
+    public void TC_07_Login_Invalid_Password() {
+        driver.get("http://live.techpanda.org/");
+        driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
+        sleepInSeconds(3);
+        driver.findElement(By.cssSelector("input[id='email']")).sendKeys("automation@gmail.com");
+        driver.findElement(By.cssSelector("input[id='pass']")).sendKeys("123");
+        driver.findElement(By.cssSelector("button[title='Login']")).click();
+        Assert.assertEquals(driver.findElement(By.cssSelector("#advice-validate-password-pass")).getText(),"Please enter 6 or more characters without leading or trailing spaces.");
+    }
+    @Test
+    public void TC_08_Login_Invalid_Email_Password() {
+        driver.get("http://live.techpanda.org/");
+        driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
+        sleepInSeconds(3);
+        driver.findElement(By.cssSelector("input[id='email']")).sendKeys("automation@gmail.com");
+        driver.findElement(By.cssSelector("input[id='pass']")).sendKeys("123123123");
+        driver.findElement(By.cssSelector("button[title='Login']")).click();
+        Assert.assertEquals(driver.findElement(By.xpath("//li[@class='error-msg']//span")).getText(),"Invalid login or password.");
     }
 
     @AfterClass
