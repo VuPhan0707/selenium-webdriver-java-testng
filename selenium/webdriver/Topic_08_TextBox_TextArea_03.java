@@ -137,13 +137,6 @@ public class Topic_08_TextBox_TextArea_03 {
         driver.findElement(By.xpath("//input[@type='submit']")).click();
 
 
-
-
-
-
-
-
-
     }
     @AfterClass
     public void afterClass() {
