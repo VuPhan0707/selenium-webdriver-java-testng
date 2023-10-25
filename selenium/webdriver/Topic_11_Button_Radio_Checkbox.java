@@ -70,7 +70,7 @@ public class Topic_11_Button_Radio_Checkbox {
         String registerBackgroundHexa = registerBackgroundColour.asHex();
         System.out.println("Background color Hexa = " + registerBackgroundHexa);
 
-        Assert.assertEquals(registerBackgroundHexa.toLowerCase(),"#ef5a00");
+        Assert.assertEquals(Color.fromString(registerButton.getCssValue("background-color")).asHex().toLowerCase(),"#ef5a00");
     }
     @Test
     public void TC_02_Fahasa_Button() {
@@ -80,6 +80,18 @@ public class Topic_11_Button_Radio_Checkbox {
         driver.findElement(By.cssSelector("li.popup-login-tab-login")).click();
         sleepInSeconds(2);
         WebElement loginButton = driver.findElement(By.cssSelector("button.fhs-btn-login"));
+        String loginButtonColor = loginButton.getCssValue("background-image");
+        System.out.println(loginButtonColor);
+        //Verify button enabled khi đã click vào checkbox
+        Assert.assertFalse(loginButton.isEnabled());
+        Assert.assertEquals(Color.fromString(loginButton.getCssValue("background-color")).asHex().toLowerCase(),"#000000");
+
+        //Input email & password
+        driver.findElement(By.cssSelector("input#login_username")).sendKeys("automationtesting@gmail.com");
+        driver.findElement(By.cssSelector("input#login_password")).sendKeys("123456");
+        sleepInSeconds(2);
+        Assert.assertTrue(loginButton.isEnabled());
+        Assert.assertEquals(Color.fromString(loginButton.getCssValue("background-color")).asHex().toLowerCase(),"#c92127");
     }
     @AfterClass
     public void afterClass() {
