@@ -51,22 +51,22 @@ public class Topic_12_Checkbox_Radio {
         //WebElement checkBox = driver.findElement(By.xpath("//label[text()='Dual-zone air conditioning']/preceding-sibling::input"));
         By dualZoneCheckBox = By.xpath("//label[text()='Dual-zone air conditioning']/preceding-sibling::input");
         By rearSideAirbagscheckBox = By.xpath("//label[text()='Rear side airbags']/preceding-sibling::input");
-        if(!driver.findElement(dualZoneCheckBox).isSelected()){
-            driver.findElement(dualZoneCheckBox).click();
-            sleepInSeconds(2);
-        }
-        if(!driver.findElement(rearSideAirbagscheckBox).isSelected()){
-            driver.findElement(rearSideAirbagscheckBox).click();
-            sleepInSeconds(2);
-        }
+        checkToElement(dualZoneCheckBox);
+        checkToElement(rearSideAirbagscheckBox);
         Assert.assertTrue(driver.findElement(rearSideAirbagscheckBox).isSelected());
         Assert.assertTrue(driver.findElement(dualZoneCheckBox).isSelected());
-
-
+        uncheckToElement(rearSideAirbagscheckBox);
+        uncheckToElement(dualZoneCheckBox);
+        Assert.assertFalse(driver.findElement(rearSideAirbagscheckBox).isSelected());
+        Assert.assertFalse(driver.findElement(dualZoneCheckBox).isSelected());
            }
     @Test
     public void TC_02_Default_Telerik_Radio() {
-            }
+        driver.get("https://demos.telerik.com/kendo-ui/radiobutton/index");
+        By petrolRadio = By.xpath("//label[text()='2.0 Petrol, 147kW']/preceding-sibling::input");
+        checkToElement(petrolRadio);
+        Assert.assertTrue(driver.findElement(petrolRadio).isSelected());
+    }
     @Test
     public void TC_03_Select_All_Checkbox() {
         driver.get("https://automationfc.github.io/multiple-fields/");
@@ -113,13 +113,21 @@ public class Topic_12_Checkbox_Radio {
         // Ép kiểu interface này qua kiểu interface khác
         By registerRadio = By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input");
         ((JavascriptExecutor)driver).executeScript("arguments[0].click()",driver.findElement(registerRadio));
-
-
-
     }
-/*    public void checkToElement(By byXpath){
-       if(!driver.findElement(By ))
-            }*/
+    public void checkToElement(By byXpath){
+        //Nếu chưa chọn thì chọn
+        if(!driver.findElement(byXpath).isSelected()){
+            driver.findElement(byXpath).click();
+            sleepInSeconds(2);
+        }
+            }
+    public void uncheckToElement(By byXpath){
+        //Nếu chọn rồi thì bỏ chọn
+        if(driver.findElement(byXpath).isSelected()){
+            driver.findElement(byXpath).click();
+            sleepInSeconds(2);
+        }
+    }
     @AfterClass
     public void afterClass() {
 
