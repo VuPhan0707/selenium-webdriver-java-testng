@@ -100,7 +100,7 @@ public class Topic_12_Checkbox_Radio {
 
     }
     @Test
-    public void TC_04_Custom_Checkbox() {
+    public void TC_04_Custom_Radio() {
         driver.get("https://tiemchungcovid19.gov.vn/portal/register-person");
         //Case 4:
         //Chỉ cần dùng 1 locator
@@ -113,6 +113,23 @@ public class Topic_12_Checkbox_Radio {
         // Ép kiểu interface này qua kiểu interface khác
         By registerRadio = By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input");
         ((JavascriptExecutor)driver).executeScript("arguments[0].click()",driver.findElement(registerRadio));
+    }
+    @Test
+    public void TC_05_Custom_Google_Docs() {
+        driver.get("https://docs.google.com/forms/d/e/1FAIpQLSfiypnd69zhuDkjKgqvpID9kwO29UCzeCVrGGtbNPZXQok0jA/viewform");
+        sleepInSeconds(2);
+        By canThoRadio = By.xpath("//div[@data-value='Cần Thơ']");
+        //By daNangRadio = By.xpath("//div[@data-value ='Đà Nẵng']");
+        //Verify radio is not selected
+        //Assert.assertEquals(driver.findElement(canThoRadio).getAttribute("aria-checked"),"false");
+
+
+        driver.findElement(canThoRadio).click();
+        //driver.findElement(daNangRadio).click();
+        sleepInSeconds(2);
+
+
+
     }
     public void checkToElement(By byXpath){
         //Nếu chưa chọn thì chọn
