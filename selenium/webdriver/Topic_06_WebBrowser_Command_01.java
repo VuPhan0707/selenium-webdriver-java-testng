@@ -128,7 +128,7 @@ public class Topic_06_WebBrowser_Command_01 {
         driver.navigate().to("");
         driver.navigate().to(new URL(""));
 
-        // Alert/ Window (Tab) / Frame (iFrame
+        // Alert/ Window (Tab) / Frame (iFrame)
         driver.switchTo().alert().accept();
         driver.switchTo().alert().dismiss();
         driver.switchTo().alert().getText();
